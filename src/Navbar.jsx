@@ -1,14 +1,10 @@
 import React from "react";
-import "./Navbar.css"; // Import the CSS file for styling
+import "./Navbar.css"; 
 
 const Navbar = () => {
   return (
     <nav className="navbar">
-      {/* Logo */}
       <div className="logo">BG-REMOVER</div>
-
-      
-      
     </nav>
   );
 };
