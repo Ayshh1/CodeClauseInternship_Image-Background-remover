@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
-import './App.css';
+import "./App.css";
 import Navbar from "./Navbar";
-import dotenv from "dotenv";
-
-dotenv.config();
+import UploadImage from "./components/UploadImage";
+import EditedImage from "./components/EditedImage";
 
 const App = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [editedImage, setEditedImage] = useState(null);
-  
 
   const handleImageUpload = (event) => {
     const imageFile = event.target.files[0];
@@ -18,19 +16,36 @@ const App = () => {
 
   const handleRemoveBackground = async () => {
     try {
-      const formData = new FormData();
-      formData.append("image", selectedImage);
+      if (!selectedImage) {
+        return;
+      }
 
-      const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/background/remove`,
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
+      const reader = new FileReader();
+      reader.onload = async () => {
+        const base64Image = reader.result.split(",")[1];
 
-      // Set the edited image URL received from the backend
-      setEditedImage(response.data.imageUrl);
+        const apiKey = "AkAcYmqLmt2gekR7DEA7YRrC";
+        const apiUrl = "https://api.remove.bg/v1.0/removebg";
+
+        const response = await axios.post(
+          apiUrl,
+          {
+            image_file_b64: base64Image,
+          },
+          {
+            headers: {
+              "X-Api-Key": apiKey,
+            },
+            responseType: "blob",
+          }
+        );
+
+        // Create an object URL for the blob and set it as the edited image URL
+        const editedImageUrl = URL.createObjectURL(response.data);
+        setEditedImage(editedImageUrl);
+      };
+
+      reader.readAsDataURL(selectedImage);
     } catch (error) {
       console.error("Error removing background:", error);
     }
@@ -39,49 +54,48 @@ const App = () => {
   const handleDownload = async () => {
     try {
       if (editedImage) {
-        // Fetch the processed image as a blob
+        // Fetch the processed image as a base64 string
         const response = await axios.get(editedImage, {
-          responseType: "blob",
+          responseType: "arraybuffer",
         });
 
-       
-        const url = window.URL.createObjectURL(new Blob([response.data]));
+        // Convert the array buffer to a base64 string
+        const base64String = btoa(
+          new Uint8Array(response.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            ""
+          )
+        );
+
+        // Convert the base64 string to a Blob
+        const byteCharacters = atob(base64String);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+          byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: "image/png" });
+
+        // Create a URL for the Blob and trigger the download
+        const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = url;
         link.setAttribute("download", "processed_image.png");
         document.body.appendChild(link);
         link.click();
-        link.parentNode.removeChild(link);
-        
+        document.body.removeChild(link); // Remove the link element after clicking
       }
     } catch (error) {
       console.error("Error downloading image:", error);
     }
   };
 
-  
-  
-  
-
   return (
-    
     <div className="background-remover">
-      <Navbar/>
-      <h1>Image Background Remover</h1>
-      <input type="file" accept="image/*" onChange={handleImageUpload} />
+      <Navbar />
+      <UploadImage handleImageUpload={handleImageUpload} />
       <button onClick={handleRemoveBackground}>Remove Background</button>
-      {editedImage && (
-        <div className="image-container">
-          <div className="first"><h2>Edited Image:</h2>
-          <img src={editedImage} alt="Edited" /></div>
-          <div className="second">
-          <button className="down" onClick={handleDownload}>Download</button>
-          </div>
-          
-
-        </div>
-        )}
-        
+      <EditedImage editedImage={editedImage} handleDownload={handleDownload} />
     </div>
   );
 };

@@ -7,7 +7,7 @@ const Navbar = () => {
       {/* Logo */}
       <div className="logo">BG-REMOVER</div>
 
-      {/* Add other navbar items here */}
+      
       
     </nav>
   );
