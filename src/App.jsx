@@ -40,7 +40,6 @@ const App = () => {
           }
         );
 
-        // Create an object URL for the blob and set it as the edited image URL
         const editedImageUrl = URL.createObjectURL(response.data);
         setEditedImage(editedImageUrl);
       };
@@ -59,7 +58,7 @@ const App = () => {
           responseType: "arraybuffer",
         });
 
-        // Convert the array buffer to a base64 string
+        // Converting the array buffer to a base64 string
         const base64String = btoa(
           new Uint8Array(response.data).reduce(
             (data, byte) => data + String.fromCharCode(byte),
@@ -67,7 +66,7 @@ const App = () => {
           )
         );
 
-        // Convert the base64 string to a Blob
+        // Converting the base64 string to a Blob
         const byteCharacters = atob(base64String);
         const byteNumbers = new Array(byteCharacters.length);
         for (let i = 0; i < byteCharacters.length; i++) {
@@ -76,7 +75,7 @@ const App = () => {
         const byteArray = new Uint8Array(byteNumbers);
         const blob = new Blob([byteArray], { type: "image/png" });
 
-        // Create a URL for the Blob and trigger the download
+        
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = url;
