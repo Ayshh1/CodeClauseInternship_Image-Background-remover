@@ -1,4 +1,4 @@
-/* Navbar styles */
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -9,29 +9,29 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Logo styles */
+
 .logo {
   font-size: 24px;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 3px;
-  position: relative; /* Make it a positioned element */
+  position: relative; 
   padding: 5px;
   text-decoration:double;
 }
 
-/* Glow effect */
+
 .logo::before {
-  content: "AS"; /* Add the text content to the before pseudo-element */
+  content: "AS";
   position: absolute;
   top: 0;
   left: 0;
   color: #007bff;
-  opacity: 0.6; /* Adjust the glow effect opacity */
-  filter: blur(5px); /* Add a blur effect to create the glow */
+  opacity: 0.6; /* 
+  filter: blur(5px); 
 }
 
-/* Navbar items */
+
 .nav-items {
   list-style: none;
   display: flex;
