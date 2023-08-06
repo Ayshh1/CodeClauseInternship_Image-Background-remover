@@ -1,0 +1,49 @@
+/* Navbar styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #2d2d2e;
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo styles */
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  position: relative; /* Make it a positioned element */
+  padding: 5px;
+  text-decoration:double;
+}
+
+/* Glow effect */
+.logo::before {
+  content: "AS"; /* Add the text content to the before pseudo-element */
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #007bff;
+  opacity: 0.6; /* Adjust the glow effect opacity */
+  filter: blur(5px); /* Add a blur effect to create the glow */
+}
+
+/* Navbar items */
+.nav-items {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav-items li {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+/* Remove last item's margin right to avoid extra spacing */
+.nav-items li:last-child {
+  margin-right: 0;
+}

@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
+
+/* Global styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url("./assets/smoke.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #333;
+  
+}
+
+h1 {
+  text-align: center;
+  margin-top: 40px;
+  color:  #2d2d2e;
+  cursor: pointer;
+  transition: 0.3s;
+}
+h1:hover{
+ color:  #185462;
+}
+
+/* Main container */
+.background-remover {
+  max-width: 800px;
+  height: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: rgba(172, 238, 247, 0.359);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding-bottom: 20px;
+
+ 
+  background-repeat: no-repeat;
+  background-position: cover;
+}
+
+/* Image upload */
+input[type="file"] {
+  display: block;
+  margin: 20px auto;
+  color: #2d2d2e;
+  font-size: 20px;
+}
+
+
+
+/* Remove background button */
+button {
+  display: block;
+  margin: 0 auto;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Edited image container */
+.image-container {
+  margin-top: 30px;
+  text-align: center;
+  height: 100px;
+  width: 100px;
+  padding-left: 40%;
+  display: flex;
+}
+
+h2 {
+  margin-bottom: 10px;
+  color:#1e2021;
+}
+h2 :hover{
+  color: #42aec6;
+}
+
+/* Edited image */
+img {
+  max-width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.96);
+  max-height: 100%;
+}
+
+/* Download button */
+button {
+  margin-top: 10px;
+  background-color:transparent;
+  transition: 0.8s;
+  outline: 2px solid #333;
+  color: #333;
+}
+
+button:hover{
+  background-color: #295761;
+  outline: none;
+  color: #fff;
+}
+
+.first{
+   padding-right: 30px;
+}
+.second{
+   padding-left: 30px;
+   padding-top: 70px;
+}
+
+/* Responsiveness for smaller screens */
+@media screen and (max-width: 480px) {
+  .background-remover {
+    padding: 10px;
+  }
+}
