@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
 
-/* Global styles */
+
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
@@ -23,7 +23,6 @@ h1:hover{
  color:  #185462;
 }
 
-/* Main container */
 .background-remover {
   max-width: 800px;
   height: 500px;
@@ -39,7 +38,7 @@ h1:hover{
   background-position: cover;
 }
 
-/* Image upload */
+
 input[type="file"] {
   display: block;
   margin: 20px auto;
@@ -49,7 +48,7 @@ input[type="file"] {
 
 
 
-/* Remove background button */
+
 button {
   display: block;
   margin: 0 auto;
@@ -62,7 +61,7 @@ button {
   font-size: 16px;
 }
 
-/* Edited image container */
+
 .image-container {
   margin-top: 30px;
   text-align: center;
@@ -80,7 +79,7 @@ h2 :hover{
   color: #42aec6;
 }
 
-/* Edited image */
+
 img {
   max-width: 100%;
   border-radius: 5px;
@@ -88,7 +87,7 @@ img {
   max-height: 100%;
 }
 
-/* Download button */
+
 button {
   margin-top: 10px;
   background-color:transparent;
@@ -111,7 +110,6 @@ button:hover{
    padding-top: 70px;
 }
 
-/* Responsiveness for smaller screens */
 @media screen and (max-width: 480px) {
   .background-remover {
     padding: 10px;
