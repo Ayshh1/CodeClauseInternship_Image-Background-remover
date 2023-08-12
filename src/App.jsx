@@ -96,6 +96,9 @@ const App = () => {
       <button onClick={handleRemoveBackground}>Remove Background</button>
       <EditedImage editedImage={editedImage} handleDownload={handleDownload} />
     </div>
+    <footer>
+    <h6>Copyright reserved - DesignbyAyshh</h6>
+    </footer>
   );
 };
 
